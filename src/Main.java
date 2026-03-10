@@ -2,24 +2,33 @@ import java.util.*;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-           // 2. Tạo một "máy quét" tên là input
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Nhập tên cổ phiếu: ");
+        //nhập tên cổ phiếu
+        System.out.print("Nhập tên cổ phiếu: ");
         String stockName = input.nextLine();
 
-        System.out.println("Nhập giá mua: ");
-        double buyPrice = input.nextDouble();
+        //Nhập giá mua vào
+        System.out.print("Nhập giá mua vào: ");
+        double buyPrice = Double.parseDouble(input.nextLine());
 
-        System.out.println("Nhập số lượng: ");
-        int quantity = input.nextInt();
+        //nhập giá hiện tại
+        System.out.print("Nhập giá hiện tại: ");
+        double currentPrice = Double.parseDouble(input.nextLine());
 
-        double totalPrice = buyPrice * quantity;
+        //nhập số lượng sở hữu
+        System.out.print("Nhập số lượng: ");
+        int quantity = Integer.parseInt(input.nextLine());
 
-        System.out.println("Kết quả: Bạn đã mua số lượng " + quantity + " " + stockName);
-        System.out.println("Tổng chi phí của bạn là: "+ totalPrice + "VNĐ");
+        double Profit = (currentPrice - buyPrice) * quantity;
+        if(Profit > 0){
+            System.out.println("Bạn lãi. Chúc mừng bạn đã lãi số tiền " + Profit);
+        }else if(Profit < 0){
+            System.out.println("Bạn đang lỗ "+ Profit + ". Hãy bình tĩnh gồng lỗ");
+        }else{
+            System.out.println("Bạn đang hòa vốn. Hãy kiên nhẫn thêm");
+        }
 
         input.close();
-
         }
     }
