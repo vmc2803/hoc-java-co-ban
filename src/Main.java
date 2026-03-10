@@ -1,20 +1,25 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+import java.util.*;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-            //khai báo tên cổ phiếu
-            String stockName = "VNM";
+           // 2. Tạo một "máy quét" tên là input
+        Scanner input = new Scanner(System.in);
 
-            //Khai báo giá mua (số thực)
-            double buyPrice = 110.5;
+        System.out.println("Nhập tên cổ phiếu: ");
+        String stockName = input.nextLine();
 
-            //Khai báo số lượng mua (số nguyên)
-            int quantity = 100;
+        System.out.println("Nhập giá mua: ");
+        double buyPrice = input.nextDouble();
 
-            //Tính tổng tiền
-            double total = buyPrice * quantity;
+        System.out.println("Nhập số lượng: ");
+        int quantity = input.nextInt();
 
-            System.out.println("Bạn vừa mua " + quantity + " cổ phiếu "+ stockName);
-            System.out.println("Tổng số tền là: " + total);
+        double totalPrice = buyPrice * quantity;
+
+        System.out.println("Kết quả: Bạn đã mua số lượng " + quantity + " " + stockName);
+        System.out.println("Tổng chi phí của bạn là: "+ totalPrice + "VNĐ");
+
+        input.close();
+
         }
     }
