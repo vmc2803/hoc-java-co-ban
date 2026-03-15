@@ -22,21 +22,25 @@ Gợi ý: Sử dụng .equals("Java2026") để so sánh chuỗi.
 
 public class Main {
     public static void main(String[] args) {
-        boolean isLocked = true;
-        System.out.print("Xin mời bạn nhập password: ");
+        //khai bao user input
         Scanner input = new Scanner(System.in);
+        boolean isRunning = true;
+        System.out.print("Put your password here dawg: ");
 
-        while (isLocked) {
+        /*code logic voi while loops -> neu nguoi dung nhap dung password->stop->end || neu
+        nguoi dung nhap sai -> yeu cau nguoi dung nhap lai -> khi nao dung thi moi end chuong trinh */
+        while (isRunning) {
             String password = input.nextLine();
-
-            if(password.equals("Java2026")){
-                System.out.println("Chào mừng bạn quay trở lại");
-                isLocked = false;
-            }else {
-                System.out.println("Bạn đã nhập sai mật khẩu, hãy thử lại");
+            if (password.equals("Java2026")){
+                System.out.println("Wellcome back dawg");
+                isRunning = false;
+            }else{
+                System.out.println("Wrong password dude, do it again");
             }
         }
 
+        //dong function scanner sau khi ket thuc chuong trinh
         input.close();
-        }
+
     }
+}
