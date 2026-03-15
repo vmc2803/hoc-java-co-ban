@@ -25,14 +25,18 @@ public class Main {
         boolean isLocked = true;
         System.out.print("Xin mời bạn nhập password: ");
         Scanner input = new Scanner(System.in);
-        String password = input.nextLine();
+
         while (isLocked) {
+            String password = input.nextLine();
+
             if(password.equals("Java2026")){
                 System.out.println("Chào mừng bạn quay trở lại");
-            }else {
                 isLocked = false;
+            }else {
                 System.out.println("Bạn đã nhập sai mật khẩu, hãy thử lại");
             }
         }
+
+        input.close();
         }
     }
