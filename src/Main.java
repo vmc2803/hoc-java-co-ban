@@ -31,6 +31,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         boolean tiepTuc = true;
         int dem = 0;
+        double totalProfit = 0;
 
         while(tiepTuc){
             dem ++;
@@ -45,12 +46,12 @@ public class Main {
             System.out.print("Số lượng: ");
             int soLuong = Integer.parseInt(input.nextLine());
 
-            double totalProfit = (giaHienTai - giaMuaVao) * soLuong;
+            double profit = (giaHienTai - giaMuaVao) * soLuong;
 
-            if (totalProfit > 0) {
-                System.out.println("Bạn đang lãi. Chúc mừng bạn đã lãi số tiền: " + totalProfit);
-            }else if (totalProfit < 0) {
-                System.out.println("Rất tiếc bạn đang lỗ số tiền "+ totalProfit + ".Hãy giữ bình tĩnh");
+            if (profit > 0) {
+                System.out.println("Bạn đang lãi. Chúc mừng bạn đã lãi số tiền: " + profit);
+            }else if (profit < 0) {
+                System.out.println("Rất tiếc bạn đang lỗ số tiền "+ profit + ".Hãy giữ bình tĩnh");
             }else{
                 System.out.println("Bạn đang hòa vốn hãy kiên nhẫn thêm để theo dõi");
             }
@@ -61,8 +62,9 @@ public class Main {
             if(luaChon.equalsIgnoreCase("N")){
                 tiepTuc = false;
             }
+            totalProfit += profit;
         }
-
+        System.out.println("Tổng lãi toàn bộ của bạn là: " + totalProfit);
         input.close();
     }
 }
