@@ -1,46 +1,67 @@
-import java.util.*;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.*;
 
-/*
-hử thách 1: Cấp độ Dễ - "Hệ thống bảo mật lớp học"
-Trong nhiệm vụ này, bạn sẽ học cách dùng while và boolean để chặn người lạ vào chương trình của mình.
+/*Thử thách tiếp theo cấp độ 2: Cấp độ Trung bình - "Kỹ sư đa nhiệm"
+Bạn đã sẵn sàng nâng cấp App quản lý tài chính chưa? Lần này chúng ta sẽ kết hợp mọi thứ đã học.
 
-Mô tả: Viết một chương trình yêu cầu người dùng nhập "Mã bí mật" để bắt đầu sử dụng App tài chính.
+Đề bài:
+Hãy viết chương trình cho phép nhập nhiều mã cổ phiếu liên tục.
+Khi người dùng chọn dừng lại (N), chương trình phải in ra tổng kết:
 
-Yêu cầu: * Tạo một biến boolean isLocked = true;.
+Đếm: Bạn đã nhập tổng cộng bao nhiêu mã? (Dùng biến int count = 0).
 
-Sử dụng vòng lặp while (isLocked).
+Cộng dồn: Tổng số tiền lãi/lỗ của tất cả các mã đó là bao nhiêu?
+(Dùng biến double totalProfit = 0).
 
-Bên trong, yêu cầu người dùng nhập mật khẩu (ví dụ: Java2026).
+Gợi ý tư duy:
 
-Nếu nhập đúng: Chào mừng người dùng, gạt isLocked = false để thoát vòng lặp.
+Hai biến count và totalProfit phải nằm NGOÀI vòng lặp
+(giống như cái túi để bạn gom nhặt tiền qua mỗi vòng vậy).
 
-Nếu nhập sai: In ra "Sai mật khẩu, hãy thử lại!" và vòng lặp tiếp tục chạy để yêu cầu nhập lại.
+Trong vòng lặp, sau mỗi lần tính xong lãi của 1 mã, bạn hãy thực hiện:
 
-Gợi ý: Sử dụng .equals("Java2026") để so sánh chuỗi.
+count++ (Tăng số lượng lên 1).
+
+totalProfit += currentProfit (Cộng thêm tiền lãi của mã vừa rồi vào tổng).
+
  */
+
 
 public class Main {
     public static void main(String[] args) {
-        //khai bao user input
-        Scanner input = new Scanner(System.in);
-        boolean isRunning = true;
-        System.out.print("Put your password here dawg: ");
 
-        /*code logic voi while loops -> neu nguoi dung nhap dung password->stop->end || neu
-        nguoi dung nhap sai -> yeu cau nguoi dung nhap lai -> khi nao dung thi moi end chuong trinh */
-        while (isRunning) {
-            String password = input.nextLine();
-            if (password.equals("Java2026")){
-                System.out.println("Wellcome back dawg");
-                isRunning = false;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập mã cổ phiếu của bạn: ");
+        String name = input.nextLine();
+        boolean tiepTuc = true;
+        int dem = 0;
+
+        while(tiepTuc){
+            dem ++;
+            String maCoPhieu = input.nextLine();
+            System.out.print("Giá mua vào của bạn: ");
+            double giaMuaVao = Double.parseDouble(input.nextLine());
+
+            System.out.print("Giá hiện tại: ");
+            double giaHienTai = Double.parseDouble(input.nextLine());
+
+            System.out.print("Số lượng: ");
+            int soLuong = Integer.parseInt(input.nextLine());
+
+            double profit = (giaMuaVao - giaHienTai) * soLuong;
+
+            if (profit > 0) {
+                System.out.println("Bạn đang lãi. Chúc mừng bạn đã lãi số tiền: " + profit);
+            }else if (profit < 0) {
+                System.out.println("Rất tiếc bạn đang lỗ số tiền "+ profit + ".Hãy giữ bình tĩnh");
             }else{
-                System.out.println("Wrong password dude, do it again");
+                System.out.println("Bạn đang hòa vốn hãy kiên nhẫn thêm để theo dõi");
+            }
+
+            String luaChon = input.nextLine();
+            if(luaChon.equalsIgnoreCase("N")){
+                tiepTuc = false;
             }
         }
-
-        //dong function scanner sau khi ket thuc chuong trinh
         input.close();
-
     }
 }
