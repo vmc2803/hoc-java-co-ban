@@ -28,15 +28,13 @@ totalProfit += currentProfit (Cộng thêm tiền lãi của mã vừa rồi và
 
 public class Main {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
-        System.out.println("Nhập mã cổ phiếu của bạn: ");
-        String name = input.nextLine();
         boolean tiepTuc = true;
         int dem = 0;
 
         while(tiepTuc){
             dem ++;
+            System.out.println("Nhập mã cổ phiếu của bạn: ");
             String maCoPhieu = input.nextLine();
             System.out.print("Giá mua vào của bạn: ");
             double giaMuaVao = Double.parseDouble(input.nextLine());
@@ -47,21 +45,24 @@ public class Main {
             System.out.print("Số lượng: ");
             int soLuong = Integer.parseInt(input.nextLine());
 
-            double profit = (giaMuaVao - giaHienTai) * soLuong;
+            double totalProfit = (giaHienTai - giaMuaVao) * soLuong;
 
-            if (profit > 0) {
-                System.out.println("Bạn đang lãi. Chúc mừng bạn đã lãi số tiền: " + profit);
-            }else if (profit < 0) {
-                System.out.println("Rất tiếc bạn đang lỗ số tiền "+ profit + ".Hãy giữ bình tĩnh");
+            if (totalProfit > 0) {
+                System.out.println("Bạn đang lãi. Chúc mừng bạn đã lãi số tiền: " + totalProfit);
+            }else if (totalProfit < 0) {
+                System.out.println("Rất tiếc bạn đang lỗ số tiền "+ totalProfit + ".Hãy giữ bình tĩnh");
             }else{
                 System.out.println("Bạn đang hòa vốn hãy kiên nhẫn thêm để theo dõi");
             }
+            System.out.println("Bạn đang có tổng số "+ dem + " mã cổ phiếu");
+            System.out.println("Bạn muốn tiếp tục hay dừng lại: chọn Y = yes hoặc N = no");
 
-            String luaChon = input.nextLine();
+            String luaChon =  input.nextLine();
             if(luaChon.equalsIgnoreCase("N")){
                 tiepTuc = false;
             }
         }
+
         input.close();
     }
 }
