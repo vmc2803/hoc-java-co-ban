@@ -42,10 +42,10 @@ public class Main {
         System.out.print("Hãy nhập số lãi suất kỳ vọng bạn mong muốn: ");
         double laiSuatKyVong = Double.parseDouble(input.nextLine());
 
+        double soTien = soVonBanDau;
 
         for(int i = 1; i <= 5; i++){
-            double soTien = 0;
-            soTien = soVonBanDau + (soVonBanDau * laiSuatKyVong / 100);
+            soTien = soTien + (soTien * laiSuatKyVong / 100);
             String formatted = String.format("%.2f", soTien);
             System.out.println("Năm " + i + " : " + formatted);
         }
