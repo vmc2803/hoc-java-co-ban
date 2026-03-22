@@ -42,13 +42,13 @@ public class Main {
         System.out.print("Hãy nhập số lãi suất kỳ vọng bạn mong muốn: ");
         double laiSuatKyVong = Double.parseDouble(input.nextLine());
 
-        double soTien = 0;
 
         for(int i = 1; i <= 5; i++){
-            soTien = soTien + (soTien * laiSuatKyVong / 100);
+            double soTien = 0;
+            soTien = soVonBanDau + (soVonBanDau * laiSuatKyVong / 100);
+            String formatted = String.format("%.2f", soTien);
+            System.out.println("Năm " + i + " : " + formatted);
         }
         input.close();
-        String formatted = String.format("%.2f", soTien);
-        System.out.println("Số tiền của bạn dự kiến là: " + formatted);
     }
 }
