@@ -1,54 +1,45 @@
 import java.util.*;
 
 /*
-    LUYỆN TẬP VỚI FOR LOOP
+    ARRAY
+    ARRAY + FOR LOOP
 
-    Bài tập thực hành: Dự báo tăng trưởng tài sản (Compound Interest)
+    Bài tập thực hành: Thử thách "Xây dựng danh mục" (Cấp độ: Dễ)
 Đề bài:
-Viết một chương trình cho phép người dùng nhập vào số vốn ban đầu và lãi suất kỳ vọng mỗi năm.
-Chương trình sẽ sử dụng vòng lặp for để tính toán và in ra số tiền người dùng có sau mỗi năm,
-liên tục trong 5 năm.
+Viết một chương trình thực hiện các bước sau:
 
-Yêu cầu kỹ thuật:
+1. Khai báo một mảng String[] có tên là topStocks gồm 3 phần tử.
 
-1. Sử dụng vòng lặp for (int i = 1; i <= 5; i++).
+2. Yêu cầu người dùng nhập tên 3 mã cổ phiếu yêu thích từ bàn phím và lưu chúng vào mảng.
 
-2. Kết quả số tiền mỗi năm phải được định dạng chỉ lấy 2 chữ số thập phân
-bằng cách dùng String.format("%.2f", total).
-
-Ví dụ mẫu (Example):
+3. Sử dụng vòng lặp for để in ra danh sách 3 mã đó kèm theo vị trí của chúng (Index).
 
 Input:
+Nhập mã 1: VNM
 
-Nhập số vốn ban đầu (triệu VNĐ): 100
+Nhập mã 2: FPT
 
-Nhập lãi suất kỳ vọng (%/năm): 10 (tức là 0.1)
+Nhập mã 3: MSN
 
 Output:
---- BÁO CÁO DỰ KIẾN TĂNG TRƯỞNG TRONG 5 NĂM ---
-Năm 1: 110.00 triệu VNĐ
-Năm 2: 121.00 triệu VNĐ
-Năm 3: 133.10 triệu VNĐ
-Năm 4: 146.41 triệu VNĐ
-Năm 5: 161.05 triệu VNĐ
+--- DANH SÁCH CỔ PHIẾU CỦA BẠN ---
+Vị trí 0: VNM
+Vị trí 1: FPT
+Vị trí 2: MSN
  */
 
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.print("Hãy nhập số vốn ban đầu của bạn: ");
-        int soVonBanDau = Integer.parseInt(input.nextLine());
-        System.out.print("Hãy nhập số lãi suất kỳ vọng bạn mong muốn: ");
-        double laiSuatKyVong = Double.parseDouble(input.nextLine());
+        System.out.print("Nhap ma co phieu: ");
+        String[] topStocks = new String[3];
 
-        double soTien = soVonBanDau;
-
-        for(int i = 1; i <= 5; i++){
-            soTien = soTien + (soTien * laiSuatKyVong / 100);
-            String formatted = String.format("%.2f", soTien);
-            System.out.println("Năm " + i + " : " + formatted);
+        for(int i = 0; i < 3; i++){
+            topStocks[i] = input.nextLine();
+            System.out.println("Vi tri " + i + ": " + topStocks[i]);
         }
-        input.close();
+
+
     }
 }
