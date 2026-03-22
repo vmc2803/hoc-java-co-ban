@@ -28,14 +28,28 @@ Vị trí 1: FPT
 Vị trí 2: MSN
  */
 
+/*Thêm kiến thức về Array.length:
+Một lời khuyên "Senior" để code chuyên nghiệp hơn
+Dù code của bạn đã chạy đúng 100%, nhưng có một mẹo nhỏ giúp bạn không phải sửa code nhiều lần
+nếu sau này muốn đổi từ 3 mã cổ phiếu lên 10 mã. Thay vì viết số 3 ở khắp nơi,
+hãy dùng thuộc tính .length:
+VD:
+Thay vì: i < 3
+for (int i = 0; i < topStocks.length; i++) {
+    Code của bạn
+}
+
+Khi dùng topStocks.length, máy tính sẽ tự hiểu là "hãy chạy hết chiều dài của mảng này".
+Nếu sau này bạn sửa new String[10],vòng lặp sẽ tự động chạy đến 10 mà bạn không cần sửa thêm chỗ nào khác.
+*/
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Nhap ma co phieu: ");
-        String[] topStocks = new String[3];
+        String[] topStocks = new String[10];
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < topStocks.length; i++){
             topStocks[i] = input.nextLine();
             System.out.println("Vi tri " + i + ": " + topStocks[i]);
         }
