@@ -56,17 +56,19 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("Bạn muốn kiểm tra bao nhiêu mã cổ phiếu? ");
         int n = Integer.parseInt(input.nextLine());
-        System.out.println("Nhập tên mã: ");
+
         String[] tenCoPhieu = new String[n];
 
         double totalProfit = 0;
 
         for (int i = 0; i < n; i++){
+            System.out.print("Nhập tên mã thứ " + (i+1) + ": ");
             tenCoPhieu[i] = input.nextLine();
         }
 
+        System.out.println("ĐANG TIẾN HÀNH TÍNH TOÁN CHI TIẾT");
         for(int j = 0; j < tenCoPhieu.length; j++){
-            System.out.println("Dang tinh toán cho mã: " + tenCoPhieu[j]);
+            System.out.println("Đang tinh toán cho mã: " + tenCoPhieu[j]);
 
             System.out.println("Nhập giá mua vào: ");
             double giaMuaVao = Double.parseDouble(input.nextLine());
@@ -77,14 +79,15 @@ public class Main {
             System.out.println("Nhập số lượng: ");
             int soLuong = Integer.parseInt(input.nextLine());
 
-            System.out.println("Số tiền hiện tại của bạn là: ");
             double profit = (giaHienTai - giaMuaVao) * soLuong;
+            System.out.println("Lãi/Lỗ của " + tenCoPhieu[j] + String.format("%.2f", profit));
 
             System.out.println("số tiền của bạn hiện tại là: " + profit);
 
-            System.out.println("số tiền của bạn hiện tại là: " +totalProfit);
             totalProfit += profit;
         }
+        System.out.println("=====================================");
+        System.out.println("Tổng Lợi Nhuận Danh Mục Đầu Tư: " + String.format("%.2f", totalProfit));
         input.close();
     }
 }
