@@ -4,56 +4,97 @@ import java.util.*;
     ARRAY
     ARRAY + FOR LOOP
 
-    Bài tập thực hành: Thử thách "Xây dựng danh mục" (Cấp độ: Dễ)
-Đề bài:
-Viết một chương trình thực hiện các bước sau:
+    Bài tập thực hành: App Quản lý Danh mục Chứng khoán (v2.0)
+    Mục tiêu: Thay vì nhập và tính toán từng mã lẻ tẻ,
+    chương trình sẽ cho phép người dùng khai báo toàn bộ danh mục trước,
+    sau đó mới tiến hành tính toán và in báo cáo tổng kết.
 
-1. Khai báo một mảng String[] có tên là topStocks gồm 3 phần tử.
+    Các bước thực hiện:
+    Khởi tạo: Hỏi người dùng: "Bạn muốn kiểm tra bao nhiêu mã cổ phiếu?".
 
-2. Yêu cầu người dùng nhập tên 3 mã cổ phiếu yêu thích từ bàn phím và lưu chúng vào mảng.
+    Khai báo mảng: Tạo một mảng String[] để lưu tên các mã cổ phiếu với kích thước dựa trên con số người dùng vừa nhập.
 
-3. Sử dụng vòng lặp for để in ra danh sách 3 mã đó kèm theo vị trí của chúng (Index).
+    Vòng lặp nhập tên: Dùng vòng lặp for đầu tiên để yêu cầu người dùng nhập lần lượt tên của từng mã vào mảng.
+
+    Vòng lặp xử lý: Dùng vòng lặp for thứ hai để duyệt qua mảng tên vừa có. Với mỗi tên mã trong mảng:
+    1.Hỏi giá mua vào, giá hiện tại và số lượng.
+    2.Tính lãi/lỗ của mã đó theo công thức:
+            Profit = (CurrentPrice - BuyPrice) * Quantity
+      In kết quả lãi/lỗ của mã đó ra màn hình.
+      Cộng dồn vào biến totalPortfolioProfit để tính tổng cho cả danh mục.
+    Tổng kết: Sau khi vòng lặp kết thúc, in ra tổng số tiền lãi/lỗ của toàn bộ danh mục.
+
+    Ví dụ Kiểm thử (Test Case)
+Để đảm bảo code của bạn chạy đúng, hãy thử nhập theo các thông số sau:
 
 Input:
-Nhập mã 1: VNM
+1.  Số lượng mã muốn nhập: 2
+2.  Nhập mã 1: VNM
+3.  Nhập mã 2: FPT
+4.  (Xử lý VNM): Giá mua 100, Giá hiện tại 110, Số lượng 100
+5.  (Xử lý FPT): Giá mua 90, Giá hiện tại 85, Số lượng 200
 
-Nhập mã 2: FPT
+Output mong đợi:
+--- ĐANG TÍNH TOÁN DANH MỤC ---
+Mã VNM: Bạn đang lãi 1000.00 VNĐ
+Mã FPT: Bạn đang lỗ -1000.00 VNĐ
 
-Nhập mã 3: MSN
+--- TỔNG KẾT ---
+Tổng số mã đã kiểm tra: 2
+Tổng lợi nhuận danh mục: 0.00 VNĐ
 
-Output:
---- DANH SÁCH CỔ PHIẾU CỦA BẠN ---
-Vị trí 0: VNM
-Vị trí 1: FPT
-Vị trí 2: MSN
- */
+Gợi ý "Kỹ sư" dành cho bạn:
 
-/*Thêm kiến thức về Array.length:
-Một lời khuyên "Senior" để code chuyên nghiệp hơn
-Dù code của bạn đã chạy đúng 100%, nhưng có một mẹo nhỏ giúp bạn không phải sửa code nhiều lần
-nếu sau này muốn đổi từ 3 mã cổ phiếu lên 10 mã. Thay vì viết số 3 ở khắp nơi,
-hãy dùng thuộc tính .length:
-VD:
-Thay vì: i < 3
-for (int i = 0; i < topStocks.length; i++) {
-    Code của bạn
-}
+1.Sử dụng .length: Trong các vòng lặp for, hãy dùng i < danhMuc.length thay vì ghi cứng con số. Điều này giúp code của bạn linh hoạt hơn.
+2.Vấn đề bộ nhớ: Nhớ rằng mảng bắt đầu từ vị trí 0. Đừng để vòng lặp chạy quá giới hạn kẻo bị lỗi ArrayIndexOutOfBoundsException.
+3.Định dạng: Đừng quên dùng String.format("%.2f", ...) để các con số tài chính trông chuyên nghiệp và dễ đọc hơn.
 
-Khi dùng topStocks.length, máy tính sẽ tự hiểu là "hãy chạy hết chiều dài của mảng này".
-Nếu sau này bạn sửa new String[10],vòng lặp sẽ tự động chạy đến 10 mà bạn không cần sửa thêm chỗ nào khác.
 */
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.print("Nhap ma co phieu: ");
-        String[] topStocks = new String[10];
 
-        for(int i = 0; i < topStocks.length; i++){
-            topStocks[i] = input.nextLine();
-            System.out.println("Vi tri " + i + ": " + topStocks[i]);
+        System.out.println("Bạn muốn kiểm tra bao nhiêu mã cổ phiếu? ");
+
+        int n = Integer.parseInt(input.nextLine());
+
+        System.out.println("Nhập tên mã: ");
+
+        String[] tenCoPhieu = new String[n];
+
+
+
+        double profit = 0;
+
+
+
+        for (int i = 0; i < n; i++){
+
+            tenCoPhieu[i] = input.nextLine();
+
+            for(int j = 0; j < tenCoPhieu.length; j++){
+
+                System.out.println("Nhập giá mua vào: ");
+
+                double giaMuaVao = Double.parseDouble(input.nextLine());
+
+                System.out.println("Nhập giá hiện tại: ");
+
+                double giaHienTai = Double.parseDouble(input.nextLine());
+
+                System.out.println("Nhập số lượng: ");
+
+                int soLuong = Integer.parseInt(input.nextLine());
+
+                System.out.println("Số tiền hiện tại của bạn là: ");
+
+                profit = (giaHienTai - giaMuaVao) * soLuong;
+
+            }
+
+            double totalProfit += profit;
+
         }
-
-
     }
 }
