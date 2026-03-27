@@ -54,47 +54,37 @@ Gợi ý "Kỹ sư" dành cho bạn:
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
         System.out.println("Bạn muốn kiểm tra bao nhiêu mã cổ phiếu? ");
-
         int n = Integer.parseInt(input.nextLine());
-
         System.out.println("Nhập tên mã: ");
-
         String[] tenCoPhieu = new String[n];
 
-
-
-        double profit = 0;
-
-
+        double totalProfit = 0;
 
         for (int i = 0; i < n; i++){
-
             tenCoPhieu[i] = input.nextLine();
-
-            for(int j = 0; j < tenCoPhieu.length; j++){
-
-                System.out.println("Nhập giá mua vào: ");
-
-                double giaMuaVao = Double.parseDouble(input.nextLine());
-
-                System.out.println("Nhập giá hiện tại: ");
-
-                double giaHienTai = Double.parseDouble(input.nextLine());
-
-                System.out.println("Nhập số lượng: ");
-
-                int soLuong = Integer.parseInt(input.nextLine());
-
-                System.out.println("Số tiền hiện tại của bạn là: ");
-
-                profit = (giaHienTai - giaMuaVao) * soLuong;
-
-            }
-
-            double totalProfit += profit;
-
         }
+
+        for(int j = 0; j < tenCoPhieu.length; j++){
+            System.out.println("Dang tinh toán cho mã: " + tenCoPhieu[j]);
+
+            System.out.println("Nhập giá mua vào: ");
+            double giaMuaVao = Double.parseDouble(input.nextLine());
+
+            System.out.println("Nhập giá hiện tại: ");
+            double giaHienTai = Double.parseDouble(input.nextLine());
+
+            System.out.println("Nhập số lượng: ");
+            int soLuong = Integer.parseInt(input.nextLine());
+
+            System.out.println("Số tiền hiện tại của bạn là: ");
+            double profit = (giaHienTai - giaMuaVao) * soLuong;
+
+            System.out.println("số tiền của bạn hiện tại là: " + profit);
+
+            System.out.println("số tiền của bạn hiện tại là: " +totalProfit);
+            totalProfit += profit;
+        }
+        input.close();
     }
 }
