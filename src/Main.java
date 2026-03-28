@@ -65,8 +65,10 @@ public class Main {
             }
         }
 
+        System.out.println("Bạn đang theo dõi tổng cộng " + watchList.size() + " mã cổ phiếu");
+
         for(String maCoPhieu : watchList){
-            System.out.println("Bạn đang theo dõi số lượng mã: " + watchList.size() + " mã " + maCoPhieu);
+            System.out.println(" - " + maCoPhieu);
         }
     }
 }
