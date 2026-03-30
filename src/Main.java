@@ -88,9 +88,9 @@ public class Main {
             }else {
                 System.out.println("Mã này không tồn tại !");
             }
-        }else{
-            choice.equalsIgnoreCase("N");
         }
+
+        Collections.sort(watchList);
 
         System.out.println("Danh sách cập nhật: " + watchList.size());
         for(String maCoPhieu : watchList){
