@@ -1,101 +1,98 @@
 import java.util.*;
 
 /*
-    Học và thực hành với ArrayList
-    // Cú pháp tổng quát:
-    ArrayList<Kiểu_Dữ_Liệu> tênBiến = new ArrayList<>();
-
-    Lưu ý cực quan trọng: ArrayList không chơi với kiểu dữ liệu nguyên thủy (int, double, boolean). Nó chỉ chơi với các "Lớp bao" (Wrapper Classes).
-
-    int -> Integer
-    double -> Double
-    boolean -> Boolean
-
-    Khái niệm & Ý nghĩa
-    ArrayList là một "Mảng động" (Resizable Array) nằm trong gói java.util.
-
-    Khái niệm: Khác với Mảng thông thường có kích thước cố định ngay khi tạo, ArrayList có thể tự động thay đổi kích thước của nó khi bạn thêm hoặc xóa phần tử.
-
-    Ý nghĩa: Nó giải quyết bài toán "Tôi không biết người dùng sẽ nhập bao nhiêu dữ liệu". Bạn không còn phải lo lỗi "vượt quá giới hạn mảng" hay lãng phí bộ nhớ khi khai báo quá dư thừa.
-
-    Cách dùng (Các phương thức phổ biến)
-    Giả sử chúng ta có một danh sách ArrayList<String> tuiDo = new ArrayList<>();
-    Hành động	    Lệnh	                    Giải thích
-    Thêm mới	    tuiDo.add("Laptop");	    Nhét thêm đồ vào cuối danh sách.
-    Lấy ra	        tuiDo.get(0);	            Lấy đồ ở vị trí số 0 (giống tuiDo[0]).
-    Sửa đổi	        tuiDo.set(0, "Macbook");	Thay đồ ở vị trí 0 bằng đồ mới.
-    Xóa bỏ	        tuiDo.remove(1);	        Vứt đồ ở vị trí số 1 đi, các đồ sau tự dồn lên.
-    Kích thước	    tuiDo.size();	            Hỏi xem trong túi đang có bao nhiêu món (thay vì .length).
-
-    Ví dụ minh họa ngoài đời thực:
-    Mảng (Array): Giống như Dãy ghế trong rạp chiếu phim. Khi rạp đã xây xong 100 ghế, bạn không thể nhét thêm người thứ 101 vào dãy đó được. Muốn thêm, bạn phải xây hẳn một cái rạp mới.
-
-    ArrayList: Giống như Danh sách bạn bè trên Facebook. Hôm nay bạn có 10 người bạn, mai có 100 người, ngày kia bạn hủy kết bạn với 2 người. Danh sách tự động "dài ra" hoặc "ngắn lại" mà bạn không cần phải xây lại Facebook từ đầu.
-
-    Ví dụ luyện tập đơn giản: "Danh sách theo dõi (Watchlist)"
-    Thay vì hỏi người dùng "Nhập bao nhiêu mã", chúng ta hãy để họ nhập thoải mái cho đến khi họ gõ chữ "EXIT" thì dừng lại.
-
-    Nhiệm vụ của bạn:
-    Khai báo một ArrayList<String> watchList.
-
-    1.Dùng vòng lặp while(true) để người dùng nhập tên mã cổ phiếu liên tục.
-
-    2.Nếu người dùng nhập "EXIT" (không phân biệt hoa thường), dùng lệnh break để thoát vòng lặp.
-
-    3.Ngược lại, dùng .add() để đưa mã đó vào watchList.
-
-    4.Cuối cùng, dùng vòng lặp for (hoặc for-each) để in ra: "Bạn đang theo dõi [Số lượng] mã: [Danh sách tên mã]".
-
-    Gợi ý nhỏ: Bạn có thể dùng watchList.size() để biết họ đã nhập bao nhiêu mã.
+    Bài tập tổng hợp kiến thức Java Basic
+    Đề bài: "Hệ thống Quản lý Danh mục Đầu tư v3.0"
+    Yêu cầu tính năng:
+    Chế độ nhập liệu: Sử dụng while(true) để người dùng nhập mã cổ phiếu.
+    Nhập "EXIT" để dừng.
+    Mỗi khi nhập 1 mã, hãy dùng .add() vào ArrayList<String> watchList.
+    Chế độ kiểm tra: * Sau khi nhập xong, hãy in ra danh sách đã được Sắp xếp A-Z.
+    Hỏi người dùng: "Bạn có muốn kiểm tra chi tiết lợi nhuận không? (Y/N)".
+    Chế độ tính toán (Phần khó): * Nếu chọn "Y", hãy dùng vòng lặp for-each đi qua watchList.
+    Với mỗi mã, hãy yêu cầu nhập: Giá mua, Giá hiện tại, Số lượng.
+    Tính lãi/lỗ và in ra ngay lập tức với định dạng %.2f.
+    Cộng dồn vào một biến totalProfit tổng.
+    Chế độ dọn dẹp:
+    Hỏi người dùng có muốn xóa mã nào khỏi danh sách không.
+    Sử dụng .contains() và .remove() để thực hiện.
+    Báo cáo cuối cùng: * In ra tổng lợi nhuận cuối cùng của toàn bộ danh mục sau khi đã xóa.
+    Quy trình "Chuẩn Pro" để bạn thực hiện:
+    Bước 1: Viết Pseudo-code ra giấy hoặc comment vào IntelliJ. Chia nhỏ thành từng "Module" (Nhập - Sắp xếp - Tính toán - Xóa).
+    Bước 2: Code từng Module một. Xong phần nào, chạy thử (Run) phần đó ngay. Đừng viết một lèo từ đầu đến cuối mới chạy, sẽ rất khó tìm lỗi.
+    Bước 3: Sử dụng phím tắt Shift + F6 để đặt tên biến cho thật chuẩn (ví dụ: stockName, buyPrice, currentProfit).
+    Bước 4 (Quan trọng): Thực hiện Commit thứ 13 với lời nhắn: feat: final consolidation project before OOP.
 */
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<String> watchList = new ArrayList();
-        System.out.println("Nhập tên mã cổ phiếu: ");
+        System.out.println("Chào Mừng Bạn Đến Với Ứng Dụng Hệ thống Quản lý Danh mục Đầu tư v3.0");
+        //Khu Vực Khai Báo
         Scanner input = new Scanner(System.in);
+        ArrayList<String> watchList = new ArrayList<>();
+        double tongProfit = 0;
 
+        //Tính Năng Nhập Liệu:
+        System.out.println("Nhập tên mã cổ phiếu: ");
         while(true){
-            String maCoPhieu = input.nextLine();
-
-            if(maCoPhieu.equalsIgnoreCase("exit")){
+            String tenMaCoPhieu = input.nextLine();
+            if(tenMaCoPhieu.equalsIgnoreCase("exit")){
                 break;
             }else{
-                watchList.add(maCoPhieu);
-            }
-        }
-
-        System.out.println("Bạn đang theo dõi tổng cộng " + watchList.size() + " mã cổ phiếu");
-
-        for(String maCoPhieu : watchList){
-            System.out.println(" - " + maCoPhieu);
-        }
-
-        System.out.println("Bạn có muốn xóa mã nào không ?");
-
-        String choice = input.nextLine();
-
-        if(choice.equalsIgnoreCase("Y")){
-            System.out.println("Hãy nhập mã mà bạn muốn xóa: ");
-            String searchName = input.nextLine();
-
-            if(watchList.contains(searchName)){
-                System.out.println("Tìm thấy mã " + searchName + " trong danh sách");
-                System.out.println("==================================================");
-                watchList.remove(searchName);
-                System.out.println("Chương trình đang thực hiện xóa");
-                System.out.println("==================================================");
-            }else {
-                System.out.println("Mã này không tồn tại !");
+                watchList.add(tenMaCoPhieu);
             }
         }
 
         Collections.sort(watchList);
 
-        System.out.println("Danh sách cập nhật: " + watchList.size());
-        for(String maCoPhieu : watchList){
-            System.out.println(" - " + maCoPhieu);
+        System.out.println("Bạn đang theo doõi tổng cộng " + watchList.size() + " mã cổ phiếu");
+        for(String tenMaCoPhieu : watchList){
+            System.out.println(" - " + tenMaCoPhieu);
         }
-        input.close();
+        System.out.println("Danh sách đã sắp xếp theo A-Z");
+
+        //Chế độ tính toán lãi/lỗ
+        System.out.println("Bạn có muốn kiểm tra chi tit lợi nhuận không? (Y/N)");
+
+        String luaChon = input.nextLine();
+        if(luaChon.equalsIgnoreCase("y")){
+            for(String tenMaCoPhieu : watchList){
+                System.out.println("Đang tính toán cho mã cổ phiếu: " + tenMaCoPhieu);
+                System.out.print("Nhập giá mua: ");
+                double giaMua = Double.parseDouble(input.nextLine());
+
+                System.out.print("Nhập giá hiện tại: ");
+                double giaHienTai = Double.parseDouble(input.nextLine());
+
+                System.out.print("Nhập số lượng: ");
+                int soLuong = Integer.parseInt(input.nextLine());
+
+                double profit = (giaHienTai - giaMua) * soLuong;
+
+                System.out.println("Hiện tại bạn đang lãi/lỗ: " + String.format("%.2f" , profit));
+
+                tongProfit += profit;
+            }
+
+            System.out.println("Tổng lãi/lỗ của bạn hiện tại là: " + String.format("%.2f" , tongProfit));
+        }
+
+        System.out.println("Bạn có muốn xóa mã nào ra khỏi danh sách không? (Y/N)");
+        String luaChonXoa = input.nextLine();
+        if(luaChonXoa.equalsIgnoreCase("y")){
+            System.out.println("Nhập mã bạn muốn xóa: ");
+            String timKiem = input.nextLine();
+
+            if(watchList.contains(timKiem)){
+                System.out.println("Tìm thấy mã " + timKiem + " trong hệ thống");
+                System.out.println("===========================================");
+                System.out.println("Hệ thống đang xử lý !");
+                watchList.remove(timKiem);
+                System.out.println("===========================================");
+            }else{
+                System.out.println("Không tìm thấy mã !");
+            }
+        }
+
     }
 }
