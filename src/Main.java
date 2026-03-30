@@ -75,26 +75,27 @@ public class Main {
 
         String choice = input.nextLine();
 
-        boolean tiepTuc = true;
         if(choice.equalsIgnoreCase("Y")){
             System.out.println("Hãy nhập mã mà bạn muốn xóa: ");
+            String searchName = input.nextLine();
+
+            if(watchList.contains(searchName)){
+                System.out.println("Tìm thấy mã " + searchName + " trong danh sách");
+                System.out.println("==================================================");
+                watchList.remove(searchName);
+                System.out.println("Chương trình đang thực hiện xóa");
+                System.out.println("==================================================");
+            }else {
+                System.out.println("Mã này không tồn tại !");
+            }
         }else{
-            tiepTuc = false;
-        }
-
-        String searchName = input.nextLine();
-
-        if(watchList.contains(searchName)){
-            System.out.println("Tìm thấy mã " + searchName + " trong danh sách");
-            watchList.remove(searchName);
-        }else {
-            System.out.println("Mã này không tồn tại !");
+            choice.equalsIgnoreCase("N");
         }
 
         System.out.println("Danh sách cập nhật: " + watchList.size());
         for(String maCoPhieu : watchList){
             System.out.println(" - " + maCoPhieu);
         }
-
+        input.close();
     }
 }
