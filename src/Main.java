@@ -70,5 +70,31 @@ public class Main {
         for(String maCoPhieu : watchList){
             System.out.println(" - " + maCoPhieu);
         }
+
+        System.out.println("Bạn có muốn xóa mã nào không ?");
+
+        String choice = input.nextLine();
+
+        boolean tiepTuc = true;
+        if(choice.equalsIgnoreCase("Y")){
+            System.out.println("Hãy nhập mã mà bạn muốn xóa: ");
+        }else{
+            tiepTuc = false;
+        }
+
+        String searchName = input.nextLine();
+
+        if(watchList.contains(searchName)){
+            System.out.println("Tìm thấy mã " + searchName + " trong danh sách");
+            watchList.remove(searchName);
+        }else {
+            System.out.println("Mã này không tồn tại !");
+        }
+
+        System.out.println("Danh sách cập nhật: " + watchList.size());
+        for(String maCoPhieu : watchList){
+            System.out.println(" - " + maCoPhieu);
+        }
+
     }
 }
