@@ -52,8 +52,25 @@ public class Main {
         System.out.println("Danh sách đã sắp xếp theo A-Z");
 
         //Chế độ tính toán lãi/lỗ
-        System.out.println("Bạn có muốn kiểm tra chi tit lợi nhuận không? (Y/N)");
 
+        System.out.println("Bạn có muốn xóa mã nào ra khỏi danh sách không? (Y/N)");
+        String luaChonXoa = input.nextLine();
+        if(luaChonXoa.equalsIgnoreCase("y")){
+            System.out.println("Nhập mã bạn muốn xóa: ");
+            String timKiem = input.nextLine();
+
+            if(watchList.contains(timKiem)){
+                System.out.println("Tìm thấy mã " + timKiem + " trong hệ thống");
+                System.out.println("===========================================");
+                System.out.println("Hệ thống đang xử lý !");
+                watchList.remove(timKiem);
+                System.out.println("===========================================");
+            }else{
+                System.out.println("Không tìm thấy mã !");
+            }
+        }
+
+        System.out.println("Bạn có muốn kiểm tra chi tiết lợi nhuận không? (Y/N)");
         String luaChon = input.nextLine();
         if(luaChon.equalsIgnoreCase("y")){
             for(String tenMaCoPhieu : watchList){
@@ -76,23 +93,6 @@ public class Main {
 
             System.out.println("Tổng lãi/lỗ của bạn hiện tại là: " + String.format("%.2f" , tongProfit));
         }
-
-        System.out.println("Bạn có muốn xóa mã nào ra khỏi danh sách không? (Y/N)");
-        String luaChonXoa = input.nextLine();
-        if(luaChonXoa.equalsIgnoreCase("y")){
-            System.out.println("Nhập mã bạn muốn xóa: ");
-            String timKiem = input.nextLine();
-
-            if(watchList.contains(timKiem)){
-                System.out.println("Tìm thấy mã " + timKiem + " trong hệ thống");
-                System.out.println("===========================================");
-                System.out.println("Hệ thống đang xử lý !");
-                watchList.remove(timKiem);
-                System.out.println("===========================================");
-            }else{
-                System.out.println("Không tìm thấy mã !");
-            }
-        }
-
+        input.close();
     }
 }
