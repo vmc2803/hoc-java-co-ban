@@ -2,97 +2,98 @@ import java.util.*;
 
 /*
     Bài tập tổng hợp kiến thức Java Basic
-    Đề bài: "Hệ thống Quản lý Danh mục Đầu tư v3.0"
-    Yêu cầu tính năng:
-    Chế độ nhập liệu: Sử dụng while(true) để người dùng nhập mã cổ phiếu.
-    Nhập "EXIT" để dừng.
-    Mỗi khi nhập 1 mã, hãy dùng .add() vào ArrayList<String> watchList.
-    Chế độ kiểm tra: * Sau khi nhập xong, hãy in ra danh sách đã được Sắp xếp A-Z.
-    Hỏi người dùng: "Bạn có muốn kiểm tra chi tiết lợi nhuận không? (Y/N)".
-    Chế độ tính toán (Phần khó): * Nếu chọn "Y", hãy dùng vòng lặp for-each đi qua watchList.
-    Với mỗi mã, hãy yêu cầu nhập: Giá mua, Giá hiện tại, Số lượng.
-    Tính lãi/lỗ và in ra ngay lập tức với định dạng %.2f.
-    Cộng dồn vào một biến totalProfit tổng.
-    Chế độ dọn dẹp:
-    Hỏi người dùng có muốn xóa mã nào khỏi danh sách không.
-    Sử dụng .contains() và .remove() để thực hiện.
-    Báo cáo cuối cùng: * In ra tổng lợi nhuận cuối cùng của toàn bộ danh mục sau khi đã xóa.
-    Quy trình "Chuẩn Pro" để bạn thực hiện:
-    Bước 1: Viết Pseudo-code ra giấy hoặc comment vào IntelliJ. Chia nhỏ thành từng "Module" (Nhập - Sắp xếp - Tính toán - Xóa).
-    Bước 2: Code từng Module một. Xong phần nào, chạy thử (Run) phần đó ngay. Đừng viết một lèo từ đầu đến cuối mới chạy, sẽ rất khó tìm lỗi.
-    Bước 3: Sử dụng phím tắt Shift + F6 để đặt tên biến cho thật chuẩn (ví dụ: stockName, buyPrice, currentProfit).
-    Bước 4 (Quan trọng): Thực hiện Commit thứ 13 với lời nhắn: feat: final consolidation project before OOP.
+    Luyện tập method và try-catch
 */
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Chào Mừng Bạn Đến Với Ứng Dụng Hệ thống Quản lý Danh mục Đầu tư v3.0");
-        //Khu Vực Khai Báo
+        inDauGachNgang();
+        System.out.println("HỆ THỐNG QUẢN LÝ DANH MỤC ĐẦU TƯ v3.0 (STABLE)");
+        inDauGachNgang();
+
+        // 1. Khai báo
         Scanner input = new Scanner(System.in);
         ArrayList<String> watchList = new ArrayList<>();
-        double tongProfit = 0;
 
-        //Tính Năng Nhập Liệu:
-        System.out.println("Nhập tên mã cổ phiếu: ");
-        while(true){
-            String tenMaCoPhieu = input.nextLine();
-            if(tenMaCoPhieu.equalsIgnoreCase("exit")){
-                break;
-            }else{
-                watchList.add(tenMaCoPhieu);
-            }
+        // 2. Nhập dữ liệu (Giữ ở Main vì nó là khởi đầu)
+        System.out.println("Nhập tên mã cổ phiếu (Gõ 'exit' để dừng):");
+        while (true) {
+            String ma = input.nextLine();
+            if (ma.equalsIgnoreCase("exit")) break;
+            watchList.add(ma.toUpperCase()); // Tự động viết hoa cho đẹp
         }
 
+        // 3. Sắp xếp và Hiển thị
         Collections.sort(watchList);
+        System.out.println("\nDanh sách theo dõi (" + watchList.size() + " mã): " + watchList);
 
-        System.out.println("Bạn đang theo doõi tổng cộng " + watchList.size() + " mã cổ phiếu");
-        for(String tenMaCoPhieu : watchList){
-            System.out.println(" - " + tenMaCoPhieu);
-        }
-        System.out.println("Danh sách đã sắp xếp theo A-Z");
+        // 4. Gọi hàm Xóa mã (Kiểu void - Làm xong rồi thôi)
+        xoaMaCoPhieu(watchList, input);
 
-        //Chế độ tính toán lãi/lỗ
+        // 5. Gọi hàm Tính toán (Kiểu double - Lấy kết quả về)
+        double ketQuaCuoi = tinhToanLoiNhuan(watchList, input);
 
-        System.out.println("Bạn có muốn xóa mã nào ra khỏi danh sách không? (Y/N)");
-        String luaChonXoa = input.nextLine();
-        if(luaChonXoa.equalsIgnoreCase("y")){
-            System.out.println("Nhập mã bạn muốn xóa: ");
-            String timKiem = input.nextLine();
+        // 6. Tổng kết cuối cùng
+        inDauGachNgang();
+        System.out.println("BÁO CÁO CUỐI CÙNG: Tổng lãi/lỗ = " + String.format("%.2f", ketQuaCuoi));
+        System.out.println("Cảm ơn Chien Vu đã sử dụng hệ thống!");
+        inDauGachNgang();
 
-            if(watchList.contains(timKiem)){
-                System.out.println("Tìm thấy mã " + timKiem + " trong hệ thống");
-                System.out.println("===========================================");
-                System.out.println("Hệ thống đang xử lý !");
-                watchList.remove(timKiem);
-                System.out.println("===========================================");
-            }else{
-                System.out.println("Không tìm thấy mã !");
-            }
-        }
-
-        System.out.println("Bạn có muốn kiểm tra chi tiết lợi nhuận không? (Y/N)");
-        String luaChon = input.nextLine();
-        if(luaChon.equalsIgnoreCase("y")){
-            for(String tenMaCoPhieu : watchList){
-                System.out.println("Đang tính toán cho mã cổ phiếu: " + tenMaCoPhieu);
-                System.out.print("Nhập giá mua: ");
-                double giaMua = Double.parseDouble(input.nextLine());
-
-                System.out.print("Nhập giá hiện tại: ");
-                double giaHienTai = Double.parseDouble(input.nextLine());
-
-                System.out.print("Nhập số lượng: ");
-                int soLuong = Integer.parseInt(input.nextLine());
-
-                double profit = (giaHienTai - giaMua) * soLuong;
-
-                System.out.println("Hiện tại bạn đang lãi/lỗ: " + String.format("%.2f" , profit));
-
-                tongProfit += profit;
-            }
-
-            System.out.println("Tổng lãi/lỗ của bạn hiện tại là: " + String.format("%.2f" , tongProfit));
-        }
         input.close();
+    }
+
+    // --- KHU VỰC CÁC PHƯƠNG THỨC (METHODS) ---
+
+    public static void inDauGachNgang() {
+        System.out.println("===========================================");
+    }
+
+    public static void xoaMaCoPhieu(ArrayList<String> list, Scanner sc) {
+        System.out.print("\nBạn có muốn xóa mã nào không? (Y/N): ");
+        if (sc.nextLine().equalsIgnoreCase("y")) {
+            System.out.print("Nhập mã muốn xóa: ");
+            String target = sc.nextLine().toUpperCase();
+            if (list.contains(target)) {
+                list.remove(target);
+                System.out.println("=> Đã xóa mã " + target);
+            } else {
+                System.out.println("=> Mã này không có trong danh sách.");
+            }
+        }
+    }
+
+    public static double tinhToanLoiNhuan(ArrayList<String> list, Scanner sc) {
+        System.out.print("\nBạn có muốn tính toán lãi lỗ không? (Y/N): ");
+        double total = 0;
+
+        if (sc.nextLine().equalsIgnoreCase("y")) {
+            for (String stock : list) {
+                inDauGachNgang();
+                System.out.println("MÃ CỔ PHIẾU: " + stock);
+
+                // Dùng Try-Catch bao bọc toàn bộ quy trình tính toán của 1 mã
+                try {
+                    System.out.print(" - Nhập giá mua: ");
+                    double cost = Double.parseDouble(sc.nextLine());
+
+                    System.out.print(" - Nhập giá hiện tại: ");
+                    double price = Double.parseDouble(sc.nextLine());
+
+                    System.out.print(" - Nhập số lượng: ");
+                    int volume = Integer.parseInt(sc.nextLine());
+
+                    // Công thức tính toán
+                    double profit = (price - cost) * volume;
+                    System.out.println(" -> Lãi/Lỗ của " + stock + ": " + String.format("%.2f", profit));
+
+                    total += profit; // Chỉ cộng vào tổng nếu không có lỗi xảy ra ở trên
+
+                } catch (Exception e) {
+                    System.out.println(" !!! LỖI: Dữ liệu nhập sai (phải là số). Bỏ qua mã này.");
+                    // Khi gặp lỗi, máy tính nhảy xuống đây và bỏ qua dòng 'total += profit'
+                }
+            }
+        }
+        return total; // Trả con số tổng về cho hàm main
     }
 }
