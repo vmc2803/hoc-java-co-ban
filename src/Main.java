@@ -7,44 +7,51 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        inThanhNgang();
+
         Scanner input = new Scanner(System.in);
-        ArrayList<String> subjectList = new ArrayList<>();
+        ArrayList<String> danhSachMonHoc = new ArrayList<>();
 
-        //gọi hàm nhập môn học
-        nhapTenMonHoc(subjectList, input);
+        nhapTenMonHoc(danhSachMonHoc, input);
 
-        //gọi hàm xóa môn học
-        xoaTenMonHoc(subjectList, input);
-
-        //gọi hàm tính GPA
-        tinhDiemGPA();
-
-        //in kết quả cuối
-        System.out.println("GPA của bạn là: " + gpa);
+        xoaTenMonHoc(danhSachMonHoc, input);
     }
 
-    public static void nhapTenMonHoc(ArrayList<String> subjectList, Scanner input){
-        System.out.println("Nhập tên môn học (Gõ 'done' để dừng");
+    public static void inThanhNgang(){
+        System.out.println("---------------------------------------");
+    }
+
+    public static void nhapTenMonHoc(ArrayList<String> dsMonHoc, Scanner sc){
+        System.out.println("Nhập tên các môn học (Gõ 'done' để dừng)");
 
         while(true){
-            String monHoc = input.nextLine();
-            if(monHoc.equals("done")){
+            String tenMonHoc = sc.nextLine();
+            if(tenMonHoc.equals("done")){
                 break;
             }else{
-                subjectList.add(monHoc);
+                dsMonHoc.add(tenMonHoc.toUpperCase());
             }
         }
     }
 
-    public static void inRaManHinh(ArrayList<String> subjectList, Scanner input){
-        System.out.println("");
-    }
+    public static void xoaTenMonHoc(ArrayList<String> dsMonHoc, Scanner sc){
+        System.out.println("Bạn có muốn xóa môn nào không ? (Y/N)");
 
-    public static void xoaTenMonHoc(ArrayList<String> subjectList,Scanner input){
+        String luaChon = sc.nextLine();
 
-    }
+        if(luaChon.equalsIgnoreCase("y")){
+            System.out.println("Bạn muốn xóa môn nào ?");
+            String monCanXoa = sc.nextLine().toUpperCase();
 
-    public static double tinhDiemGPA(ArrayList<> subjectList,Scanner input){
+            if(dsMonHoc.contains(monCanXoa)){
+                dsMonHoc.remove(monCanXoa);
+                System.out.println("Đã xóa thành công môn: " + monCanXoa);
+            }else{
+                System.out.println("Không tìm thấy môn để xóa!");
+            }
+        }
+
+        System.out.println("Danh sách cập nhật: " + dsMonHoc);
 
     }
 }
