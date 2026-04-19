@@ -40,25 +40,29 @@ public class Main {
         }
     }
 
-    public static void xoaTenMonHoc(ArrayList<String> dsMonHoc, Scanner sc){
-        System.out.println("Bạn có muốn xóa môn nào không ? (Y/N)");
+    public static void xoaTenMonHoc(ArrayList<String> dsMonHoc, Scanner sc) {
 
-        String luaChon = sc.nextLine();
+        while (true) {
+            System.out.println("Bạn có muốn xóa môn nào không ? (Y/N)");
 
-        if(luaChon.equalsIgnoreCase("y")){
-            System.out.println("Bạn muốn xóa môn nào ?");
-            String monCanXoa = sc.nextLine().toUpperCase();
+            String luaChon = sc.nextLine();
 
-            if(dsMonHoc.contains(monCanXoa)){
-                dsMonHoc.remove(monCanXoa);
-                System.out.println("Đã xóa thành công môn: " + monCanXoa);
+            if (luaChon.equalsIgnoreCase("y")) {
+                System.out.println("Bạn muốn xóa môn nào ?");
+                String monCanXoa = sc.nextLine().toUpperCase();
+
+                if (dsMonHoc.contains(monCanXoa)) {
+                    dsMonHoc.remove(monCanXoa);
+                    System.out.println("Đã xóa thành công môn: " + monCanXoa);
+                } else {
+                    System.out.println("Không tìm thấy môn để xóa!");
+                }
             }else{
-                System.out.println("Không tìm thấy môn để xóa!");
+                System.out.println("Đã hoàn thành việc chỉnh sửa danh sách.");
+                break;
             }
+            System.out.println("Danh sách cập nhật: " + dsMonHoc);
         }
-
-        System.out.println("Danh sách cập nhật: " + dsMonHoc);
-
     }
 
     public static double tinhGPA(ArrayList<String> ds,Scanner sc) {
@@ -68,17 +72,21 @@ public class Main {
         for (String mon : ds) {
             System.out.println(mon);
 
-            try {
-                System.out.println("Nhập điểm: ");
-                double diem = Double.parseDouble(sc.nextLine());
-                System.out.println("Nhập số tín chỉ: ");
-                int tinChi = Integer.parseInt(sc.nextLine());
+            while (true) {
+                try {
+                    System.out.println("Nhập điểm: ");
+                    double diem = Double.parseDouble(sc.nextLine());
+                    System.out.println("Nhập số tín chỉ: ");
+                    int tinChi = Integer.parseInt(sc.nextLine());
 
-                tongDiemHeSo += (diem * tinChi);
-                tongTinChi += tinChi;
+                    tongDiemHeSo += (diem * tinChi);
+                    tongTinChi += tinChi;
 
-            } catch (Exception e) {
-                System.out.println("Có lỗi xảy ra, vui lòng thử lại");
+                    break;
+
+                } catch (Exception e) {
+                    System.out.println("Có lỗi xảy ra, vui lòng thử lại");
+                }
             }
         }
 
