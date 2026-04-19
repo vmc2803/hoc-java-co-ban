@@ -15,6 +15,12 @@ public class Main {
         nhapTenMonHoc(danhSachMonHoc, input);
 
         xoaTenMonHoc(danhSachMonHoc, input);
+
+        double ketQuaGPA = tinhGPA(danhSachMonHoc, input);
+
+        inThanhNgang();
+        System.out.println("KẾT QUẢ HỌC TẬP CỦA BẠN: ");
+        System.out.println("GPA cuối cùng: " + String.format("%.2f", ketQuaGPA));
     }
 
     public static void inThanhNgang(){
@@ -53,5 +59,33 @@ public class Main {
 
         System.out.println("Danh sách cập nhật: " + dsMonHoc);
 
+    }
+
+    public static double tinhGPA(ArrayList<String> ds,Scanner sc) {
+        double tongDiemHeSo = 0;
+        int tongTinChi = 0;
+
+        for (String mon : ds) {
+            System.out.println(mon);
+
+            try {
+                System.out.println("Nhập điểm: ");
+                double diem = Double.parseDouble(sc.nextLine());
+                System.out.println("Nhập số tín chỉ: ");
+                int tinChi = Integer.parseInt(sc.nextLine());
+
+                tongDiemHeSo += (diem * tinChi);
+                tongTinChi += tinChi;
+
+            } catch (Exception e) {
+                System.out.println("Có lỗi xảy ra, vui lòng thử lại");
+            }
+        }
+
+        if(tongTinChi > 0){
+            return tongDiemHeSo / tongTinChi;
+        }
+
+        return 0;
     }
 }
